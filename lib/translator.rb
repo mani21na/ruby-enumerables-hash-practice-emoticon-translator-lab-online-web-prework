@@ -1,4 +1,4 @@
-def load_library(path)
+def load_library(lib/emoticons.yml)
   #set a hash with get_meaning, get_emoticon as keys, empty hash for value
   emoticons = {"get_meaning" => {}, "get_emoticon" => {}}
 
