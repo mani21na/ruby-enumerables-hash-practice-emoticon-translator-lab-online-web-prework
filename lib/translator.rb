@@ -1,4 +1,4 @@
-def load_library(path)
+def load_library()
   #set a hash with get_meaning, get_emoticon as keys, empty hash for value
   emoticons = {"get_meaning" => {}, "get_emoticon" => {}}
   #load the YAML file. It has meaning(angel, angry,..) as key and the symbol as value(describe)
