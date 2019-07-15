@@ -1,34 +1,23 @@
-def load_library(path)
-  #set a hash with get_meaning, get_emoticon as keys, empty hash for value
-  emoticons = {"get_meaning" => {}, "get_emoticon" => {}}
-  #load the YAML file. It has meaning(angel, angry,..) as key and the symbol as value(describe)
-  YAML.load_file(path).each do |meaning, describe|
-     #set eng, jan from describe, so eng would be the first value, jan the second
-     eng, jan = describe
-     emoticons["get_meaning"][jan] = meaning
-     emoticons["get_emoticon"][eng] = jan
-  end
-  emoticons
+def load_library(library)
+  new_hash = {
+   "get_meaning" => {},
+   "get_emoticon" => {}
+ }
+ library.each do |meaning, translation|
+   english = translation[0]
+   japanese = translation[1]
+   new_hash["get_meaning"][japanese] = meaning
+   new_hash["get_emoticon"][english] = japanese
+ end
+  return new_hash
 end
 
 
-
-def get_japanese_emoticon(path, emoticon)
-  emoticons = load_library(path) #call load_library
-  result = emoticons["get_emoticon"][emoticon]
-  if result
-    result
-  else
-    "Sorry, that emoticon was not found"
-  end
-end
-
-def get_english_meaning(path, emoticon)
-  emoticons = load_library(path)
-  result = emoticons["get_meaning"][emoticon] #the same above but change get_meaning
-  if result
-    result
-  else
-    "Sorry, that emoticon was not found"
+def get_japanese_emoticon(file_path, emoticon)
+  library = load_library(file_path)
+  library["get_emoticon"].each do |key, value|
+    if key == emoticon
+      puts value
+    end
   end
 end
