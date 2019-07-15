@@ -1,8 +1,8 @@
-def load_library(lib/emoticons.yml)
+def load_library(path)
   #set a hash with get_meaning, get_emoticon as keys, empty hash for value
   emoticons = {"get_meaning" => {}, "get_emoticon" => {}}
-
-  YAML.load_file(lib/emoticons.yml).each do |meaning, describe|
+  #load the YAML file. It has meaning(angel, angry,..) as key and the symbol as value(describe)
+  YAML.load_file(path).each do |meaning, describe|
      #set eng, jan from describe, so eng would be the first value, jan the second
      eng, jan = describe
      emoticons["get_meaning"][jan] = meaning
@@ -10,6 +10,7 @@ def load_library(lib/emoticons.yml)
   end
   emoticons
 end
+
 
 
 def get_japanese_emoticon(path, emoticon)
